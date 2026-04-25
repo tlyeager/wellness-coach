@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Wellness Toolkit | Tina Yeager</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C9A96E;
+  --gold-light: #E8D5B0;
+  --gold-dark: #A07840;
+  --cream: #F7F4EE;
+  --warm-white: #FDFBF7;
+  --sage: #8A9E7E;
+  --sage-dark: #5A6E50;
+  --charcoal: #2C2C2C;
+  --mid-gray: #6B6B6B;
+  --light-gray: #E8E4DC;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); }
+
+/* NAV */
+nav {
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--light-gray);
+  padding: 14px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--charcoal); letter-spacing: 0.05em; }
+.nav-logo span { color: var(--gold-dark); }
+.nav-link { font-size: 0.8rem; color: var(--sage-dark); text-decoration: none; font-weight: 400; letter-spacing: 0.04em; border: 1px solid var(--sage); padding: 6px 16px; border-radius: 20px; transition: all 0.2s; }
+.nav-link:hover { background: var(--sage); color: white; }
+
+/* HERO */
+.hero {
+  background: var(--warm-white);
+  text-align: center;
+  padding: 70px 40px 60px;
+  border-bottom: 1px solid var(--light-gray);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201,169,110,0.08) 0%, transparent 70%);
+}
+.hero-logo { max-width: 260px; margin: 0 auto 30px; display: block; }
+.hero-rule { width: 80px; height: 1px; background: var(--gold); margin: 0 auto 24px; }
+.hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 600; color: var(--charcoal); line-height: 1.15; margin-bottom: 10px; }
+.hero h2 { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; font-style: italic; color: var(--gold-dark); margin-bottom: 20px; }
+.hero p { font-size: 0.95rem; color: var(--mid-gray); font-weight: 300; max-width: 520px; margin: 0 auto 30px; line-height: 1.7; }
+.hero-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--gold-dark); margin-bottom: 6px; }
+.hero-attr { font-size: 0.78rem; color: var(--mid-gray); letter-spacing: 0.05em; }
+.pdf-btn { display: inline-block; margin-top: 28px; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%); color: white; text-decoration: none; padding: 12px 30px; border-radius: 30px; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 16px rgba(160,120,64,0.3); }
+.pdf-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(160,120,64,0.4); }
+
+/* TOC */
+.toc { background: var(--cream); padding: 50px 40px; }
+.toc-inner { max-width: 800px; margin: 0 auto; }
+.toc h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--gold-dark); text-align: center; margin-bottom: 24px; font-weight: 600; }
+.toc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.toc-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--warm-white); border: 1px solid var(--light-gray); border-radius: 8px; text-decoration: none; color: var(--charcoal); font-size: 0.88rem; transition: all 0.2s; }
+.toc-item:hover { border-color: var(--gold); background: #fffdf8; transform: translateX(3px); }
+.toc-num { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--gold); font-weight: 600; min-width: 28px; }
+
+/* SECTIONS */
+.section { padding: 60px 40px; border-bottom: 1px solid var(--light-gray); }
+.section:nth-child(even) { background: var(--warm-white); }
+.section-inner { max-width: 800px; margin: 0 auto; }
+.section-header { display: flex; align-items: baseline; gap: 14px; margin-bottom: 8px; }
+.section-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--gold-light); font-weight: 300; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--charcoal); }
+.section-rule { width: 100%; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin: 12px 0 20px; }
+.section-intro { font-size: 0.92rem; color: var(--mid-gray); font-weight: 300; line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+
+/* APPS */
+.app-card { background: var(--cream); border: 1px solid var(--light-gray); border-radius: 10px; padding: 18px 20px; margin-bottom: 12px; transition: border-color 0.2s; }
+.app-card:hover { border-color: var(--gold-light); }
+.app-name { font-weight: 500; font-size: 1rem; color: var(--sage-dark); margin-bottom: 2px; }
+.app-tag { font-size: 0.78rem; color: var(--gold-dark); font-style: italic; margin-bottom: 6px; }
+.app-desc { font-size: 0.88rem; color: var(--mid-gray); line-height: 1.6; font-weight: 300; }
+
+/* TABLE */
+.toolkit-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; margin: 16px 0; }
+.toolkit-table th { background: var(--gold-dark); color: white; padding: 10px 12px; text-align: left; font-weight: 500; font-size: 0.82rem; letter-spacing: 0.03em; }
+.toolkit-table td { padding: 9px 12px; border-bottom: 1px solid var(--light-gray); vertical-align: top; line-height: 1.5; }
+.toolkit-table tr:nth-child(even) td { background: var(--cream); }
+.toolkit-table tr:hover td { background: #fdf9f2; }
+.tea-name { font-weight: 500; color: var(--charcoal); }
+.tea-time { font-size: 0.8rem; color: var(--sage-dark); font-style: italic; }
+
+/* SPICES GRID */
+.spice-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0; }
+.spice-card { background: var(--warm-white); border: 1px solid var(--light-gray); border-radius: 8px; padding: 14px 16px; }
+.spice-name { font-weight: 500; color: var(--gold-dark); font-size: 0.95rem; margin-bottom: 4px; }
+.spice-desc { font-size: 0.83rem; color: var(--mid-gray); line-height: 1.5; font-weight: 300; }
+
+/* CHECKLIST */
+.checklist { list-style: none; }
+.checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 12px; border-bottom: 1px solid var(--light-gray); font-size: 0.9rem; line-height: 1.5; }
+.checklist li:nth-child(even) { background: var(--cream); }
+.check-box { width: 18px; height: 18px; border: 1.5px solid var(--gold); border-radius: 3px; flex-shrink: 0; margin-top: 1px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.15s; }
+.check-box.checked { background: var(--sage); border-color: var(--sage); }
+.check-box.checked::after { content: '✓'; color: white; font-size: 11px; }
+
+/* BULLETS */
+.tip-list { list-style: none; }
+.tip-list li { padding: 6px 0 6px 20px; position: relative; font-size: 0.9rem; line-height: 1.6; color: var(--charcoal); font-weight: 300; border-bottom: 1px solid var(--light-gray); }
+.tip-list li::before { content: '·'; position: absolute; left: 6px; color: var(--gold); font-size: 1.2rem; top: 4px; }
+
+/* QUOTE BLOCK */
+.quote-block { background: linear-gradient(135deg, #fdfaf4 0%, var(--cream) 100%); border-left: 3px solid var(--gold); padding: 18px 22px; margin: 24px 0; border-radius: 0 8px 8px 0; }
+.quote-block p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--gold-dark); line-height: 1.6; margin-bottom: 6px; }
+.quote-block span { font-size: 0.8rem; color: var(--mid-gray); }
+
+/* PROMPTS */
+.prompt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; margin: 16px 0; }
+.prompt-chip { background: var(--cream); border: 1px solid var(--light-gray); border-radius: 8px; padding: 12px 14px; font-size: 0.85rem; color: var(--mid-gray); font-style: italic; line-height: 1.5; cursor: pointer; transition: all 0.2s; }
+.prompt-chip:hover { border-color: var(--sage); background: var(--warm-white); color: var(--charcoal); }
+
+/* COACH CTA */
+.coach-cta { background: linear-gradient(135deg, var(--sage-dark) 0%, #3d5235 100%); color: white; padding: 40px; border-radius: 12px; text-align: center; margin-top: 24px; }
+.coach-cta h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; margin-bottom: 8px; font-weight: 600; }
+.coach-cta p { font-size: 0.9rem; opacity: 0.85; margin-bottom: 20px; font-weight: 300; line-height: 1.6; }
+.coach-cta a { display: inline-block; background: var(--gold); color: white; text-decoration: none; padding: 11px 28px; border-radius: 25px; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.04em; transition: background 0.2s; }
+.coach-cta a:hover { background: var(--gold-dark); }
+
+/* FOOTER */
+footer { background: var(--charcoal); color: rgba(255,255,255,0.5); text-align: center; padding: 30px 40px; font-size: 0.78rem; line-height: 1.8; }
+footer a { color: var(--gold-light); text-decoration: none; }
+
+/* SUBSECTION */
+.sub-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--gold-dark); font-weight: 600; margin: 24px 0 10px; }
+
+@media (max-width: 600px) {
+  nav { padding: 12px 20px; }
+  .hero { padding: 50px 20px 40px; }
+  .hero h1 { font-size: 2rem; }
+  .section { padding: 40px 20px; }
+  .toc { padding: 40px 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">TINA <span>YEAGER</span></div>
+  <a href="https://sustainableweightloss.pro" class="nav-link">Your AI Coach →</a>
+</nav>
+
+<div class="hero">
+  <img src="https://tinayeager.com/wp-content/uploads/2023/01/Tina_Yeager_Google_Logo_320_x_132_px_.png" alt="Tina Yeager" class="hero-logo" onerror="this.style.display='none'">
+  <div class="hero-rule"></div>
+  <h1>Student Wellness Toolkit</h1>
+  <h2>Sustainable Weight Loss: Ditch the Diet</h2>
+  <p>Your complete companion guide to the tools, apps, and resources that support your sustainable wellness journey.</p>
+  <div class="hero-quote">"Little betters toward your ultimate best."</div>
+  <div class="hero-attr">— Tina Yeager, LMHC</div>
+  <a href="toolkit.pdf" download class="pdf-btn">⬇ Download PDF Version</a>
+</div>
+
+<div class="toc">
+  <div class="toc-inner">
+    <h3>What's Inside</h3>
+    <div class="toc-grid">
+      <a href="#apps" class="toc-item"><span class="toc-num">01</span> Recommended Tracking Apps</a>
+      <a href="#teas" class="toc-item"><span class="toc-num">02</span> Tina's Tea Guide</a>
+      <a href="#spices" class="toc-item"><span class="toc-num">03</span> Tina's Spice Guide</a>
+      <a href="#shopping" class="toc-item"><span class="toc-num">04</span> Clean Shopping Guide</a>
+      <a href="#stress" class="toc-item"><span class="toc-num">05</span> Stress Management Quick Reference</a>
+      <a href="#sleep" class="toc-item"><span class="toc-num">06</span> Sleep Hygiene Checklist</a>
+      <a href="#accountability" class="toc-item"><span class="toc-num">07</span> Accountability Partner Guide</a>
+      <a href="#coach" class="toc-item"><span class="toc-num">08</span> Getting the Most from Your AI Coach</a>
+    </div>
+  </div>
+</div>
+
+<!-- 01 APPS -->
+<div class="section" id="apps">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Recommended Tracking Apps</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">These free apps complement your course beautifully. Use them alongside your workbook to track your progress — then bring your data to your AI coach for guidance.</p>
+
+    <div class="app-card">
+      <div class="app-name">MyFitnessPal</div>
+      <div class="app-tag">Nutrition & food logging</div>
+      <div class="app-desc">The gold standard for tracking what you eat. Huge food database, barcode scanner, macro tracking, and recipe saving. Use it to log meals and review your why, when, and what patterns from the course.</div>
+    </div>
+    <div class="app-card">
+      <div class="app-name">Cronometer</div>
+      <div class="app-tag">Detailed micronutrient tracking</div>
+      <div class="app-desc">Goes deeper than calories — tracks vitamins, minerals, and micronutrients. Ideal if you want to ensure your rainbow of whole foods is truly nourishing you at a cellular level.</div>
+    </div>
+    <div class="app-card">
+      <div class="app-name">Bearable</div>
+      <div class="app-tag">Mood, energy & whole-person wellness</div>
+      <div class="app-desc">Tracks mood, energy, sleep, symptoms, and habits in one place — perfectly aligned with Tina's tri-dimensional approach. Use it to chart your mood and endurance progress alongside your workbook charts.</div>
+    </div>
+    <div class="app-card">
+      <div class="app-name">Daylio</div>
+      <div class="app-tag">Simple mood & habit journaling</div>
+      <div class="app-desc">A quick, low-friction daily mood and habit tracker. Great for students who want a simple digital version of the journaling prompts in the workbook.</div>
+    </div>
+    <div class="app-card">
+      <div class="app-name">Strong</div>
+      <div class="app-tag">Workout & strength logging</div>
+      <div class="app-desc">Tracks your exercises, weights, reps, and progress over time. Pairs well with the isometric and resistance exercises from the Recreational Movement module.</div>
+    </div>
+    <div class="app-card">
+      <div class="app-name">Strava</div>
+      <div class="app-tag">Cardio & endurance tracking</div>
+      <div class="app-desc">Best for walking, running, hiking, biking, and swimming. Tracks distance, time, and elevation — great for logging your endurance improvements over 30, 60, and 90 days.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 TEAS -->
+<div class="section" id="teas">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Tina's Tea Guide</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">Teas are one of the most powerful and enjoyable tools in your wellness toolkit. Here's exactly what each one does and when to drink it. Drink caffeinated teas in the first half of your day to protect sleep.</p>
+
+    <table class="toolkit-table">
+      <thead><tr><th>Tea</th><th>Key Benefits</th><th>Best Time</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tea-name">Green Tea / Matcha</span></td><td>Boosts metabolism & fat oxidation · L-theanine for focus & calm · Rich in antioxidants (EGCG)</td><td><span class="tea-time">Morning</span></td></tr>
+        <tr><td><span class="tea-name">Oolong Tea</span></td><td>Increases energy expenditure · Fat burning support · Catechins & theaflavins</td><td><span class="tea-time">Morning / midday</span></td></tr>
+        <tr><td><span class="tea-name">Black Tea</span></td><td>Stimulates metabolism · Caffeine boost</td><td><span class="tea-time">Morning</span></td></tr>
+        <tr><td><span class="tea-name">White Tea</span></td><td>May break down fat cells · Minimally processed · Caffeinated</td><td><span class="tea-time">Morning</span></td></tr>
+        <tr><td><span class="tea-name">Hibiscus Tea</span></td><td>Appetite suppression · Blood pressure support · Low calorie · Herbal</td><td><span class="tea-time">Afternoon / evening</span></td></tr>
+        <tr><td><span class="tea-name">Rooibos (Red) Tea</span></td><td>Regulates blood sugar · Curbs hunger · Skin health · Caffeine free</td><td><span class="tea-time">Evening</span></td></tr>
+        <tr><td><span class="tea-name">Ginger Tea</span></td><td>Boosts digestion & circulation · Accelerates fat burning · Improves nutrient absorption</td><td><span class="tea-time">With meals</span></td></tr>
+        <tr><td><span class="tea-name">Peppermint Tea</span></td><td>Curbs appetite · Reduces bloating · Uplifts mood · Eases stress</td><td><span class="tea-time">Any time</span></td></tr>
+        <tr><td><span class="tea-name">Chamomile</span></td><td>Calms anxiety · Improves sleep · Regulates mood</td><td><span class="tea-time">Evening / bedtime</span></td></tr>
+        <tr><td><span class="tea-name">Lavender</span></td><td>Deep relaxation · Reduces anxiety · Calms nervous system</td><td><span class="tea-time">Evening / bedtime</span></td></tr>
+        <tr><td><span class="tea-name">Lemon Balm</span></td><td>Calms nerves · Reduces anxiety</td><td><span class="tea-time">Evening</span></td></tr>
+        <tr><td><span class="tea-name">Passionflower</span></td><td>Reduces anxiety · Supports sleep</td><td><span class="tea-time">Bedtime</span></td></tr>
+      </tbody>
+    </table>
+    <p class="section-intro">Tip: Add cinnamon, cardamom, or cloves to rooibos for extra thermogenic and anti-inflammatory benefit — Tina's personal favourite evening ritual.</p>
+  </div>
+</div>
+
+<!-- 03 SPICES -->
+<div class="section" id="spices">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Tina's Spice Guide</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">God gave us plants and herbs for our health — it's in the Bible. These spices are thermogenic, anti-inflammatory, and metabolism-boosting. Add them freely and generously to your food.</p>
+    <div class="spice-grid">
+      <div class="spice-card"><div class="spice-name">Cinnamon</div><div class="spice-desc">Regulates blood sugar & insulin sensitivity. Naturally sweetens food. Tina eats it daily.</div></div>
+      <div class="spice-card"><div class="spice-name">Turmeric</div><div class="spice-desc">Powerful anti-inflammatory. Studies show significant reduction in obesity markers.</div></div>
+      <div class="spice-card"><div class="spice-name">Ginger</div><div class="spice-desc">Boosts circulation & digestion, accelerates fat burning. Great in teas and stir-fries.</div></div>
+      <div class="spice-card"><div class="spice-name">Cayenne</div><div class="spice-desc">Contains capsaicin — a potent thermogenic that raises metabolism and burns calories.</div></div>
+      <div class="spice-card"><div class="spice-name">Mustard Seed</div><div class="spice-desc">Shown to boost metabolism by up to 25%. Easy to add to dressings and cooking.</div></div>
+      <div class="spice-card"><div class="spice-name">Cardamom</div><div class="spice-desc">Soft, velvety flavour. Anti-obesity properties. Wonderful in soups, teas, and baked goods.</div></div>
+      <div class="spice-card"><div class="spice-name">Black Cumin</div><div class="spice-desc">Studies show significant reduction in obesity. Anti-inflammatory and immune-boosting.</div></div>
+      <div class="spice-card"><div class="spice-name">Garlic</div><div class="spice-desc">Anti-inflammatory, heart-healthy, metabolism-supporting. Use generously in cooking.</div></div>
+      <div class="spice-card"><div class="spice-name">Coriander</div><div class="spice-desc">Supports digestion and blood sugar regulation. Fresh or dried both work well.</div></div>
+      <div class="spice-card"><div class="spice-name">Saffron</div><div class="spice-desc">Reduces appetite and cravings. A little goes a long way — add to rice or warm drinks.</div></div>
+    </div>
+    <div class="quote-block"><p>"These spices make your food delicious and your body grateful. You'll stop needing as much salt and sugar when your food is this flavourful."</p><span>— Tina Yeager</span></div>
+  </div>
+</div>
+
+<!-- 04 SHOPPING -->
+<div class="section" id="shopping">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Clean Shopping Guide</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">Tina's golden rule: shop the perimeter of the grocery store. Perishable whole foods live on the edges. Processed, shelf-stable products live in the centre aisles.</p>
+
+    <div class="sub-title">The EWG Dirty Dozen & Clean 15</div>
+    <p style="font-size:0.9rem;color:var(--mid-gray);line-height:1.7;margin-bottom:12px;font-weight:300;">The Environmental Working Group publishes an annual list of which produce has the most and least pesticide residue. Check it every year at <strong style="color:var(--sage-dark)">ewg.org/foodnews</strong> — it changes annually.</p>
+    <ul class="tip-list">
+      <li><strong>Dirty Dozen</strong> — always buy organic for these (high pesticide absorption into the edible part)</li>
+      <li><strong>Clean 15</strong> — conventional is acceptable for these (low pesticide absorption)</li>
+      <li>When you must choose between a non-organic fruit/veg and a processed food — always choose the fruit or vegetable</li>
+    </ul>
+
+    <div class="sub-title">Reading Labels</div>
+    <ul class="tip-list">
+      <li>Can you pronounce every ingredient? If not, look it up</li>
+      <li>Avoid anything ending in <strong>-ol</strong> (xylitol, erythritol, sorbitol) — sugar alcohols harm your gut biome</li>
+      <li>Look for "non-GMO" and "organic" certifications on grains</li>
+      <li>Check supplement labels — what are the fillers? Are they recognisable?</li>
+      <li>Shorter ingredient lists are almost always better</li>
+    </ul>
+
+    <div class="sub-title">What to Avoid</div>
+    <ul class="tip-list">
+      <li><strong>GMO grains</strong> — Roundup-resistant crops carry pesticide residue directly into your gut biome</li>
+      <li><strong>Refined sugar</strong> — feeds bad gut bacteria, causes glycemic spikes, drives cravings</li>
+      <li><strong>Artificial sweeteners</strong> — sugar alcohols (-ol endings) harm the gut biome more than they help</li>
+      <li><strong>Processed / packaged foods</strong> — chemical processing destroys nutrients and toxifies your gut</li>
+      <li><strong>Sodas</strong> — terrible chemical composition; even diet sodas via artificial sweeteners</li>
+    </ul>
+
+    <div class="sub-title">Better Sweetener Alternatives</div>
+    <ul class="tip-list">
+      <li><strong>Best:</strong> pure stevia extract (no sugar alcohols added) · pure monk fruit extract</li>
+      <li><strong>Occasional treats:</strong> maple sugar · date sugar · coconut sugar — in moderation</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 05 STRESS -->
+<div class="section" id="stress">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Stress Management Quick Reference</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">Elevated cortisol from unmanaged stress is one of the most common hidden barriers to weight loss. These techniques come directly from Tina's course — find what works for you.</p>
+
+    <div class="sub-title">Tina's #1 Technique — Deep Breathing with Scripture</div>
+    <ul class="tip-list">
+      <li>Breathe in slowly and deeply, filling your diaphragm completely until your belly expands, then your chest</li>
+      <li>Hold for 4 seconds</li>
+      <li>As you inhale, receive God's presence — His peace, His truth about who you are</li>
+      <li>Exhale very slowly, releasing your stressors into His hands</li>
+      <li>Repeat 7-10 times. This oxygenates your bloodstream and acts as a natural muscle relaxant</li>
+    </ul>
+
+    <div class="sub-title">The 5-Minute Reset</div>
+    <ul class="tip-list">
+      <li>Breathe deeply</li>
+      <li>Brain dump, prayer, or meditative listening for God's encouragement</li>
+      <li>Prioritize one next beneficial thing</li>
+    </ul>
+
+    <div class="sub-title">Additional Techniques</div>
+    <ul class="tip-list">
+      <li>Write stress onto paper strips, submerge in water — physically release the tension</li>
+      <li>Write a stress letter, shred it, put it in your shoes, go for a brisk walk</li>
+      <li>Transfer stress energy into gardening, vigorous housework, or exercise</li>
+      <li>Work frustrations out through clay, art, or creative mediums</li>
+      <li>Foot soak in warm saltwater — work stress out through your toes</li>
+      <li>Tapping (EFT) exercises — especially helpful for anxiety and emotional eating urges</li>
+      <li>Prayer: vent concerns to God, submit them, listen, meditate on scripture</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 06 SLEEP -->
+<div class="section" id="sleep">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Sleep Hygiene Checklist</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">Quality sleep is essential for metabolism, hormone regulation, and weight loss. Click each item to check it off — and identify what to work on next.</p>
+
+    <ul class="checklist" id="sleepChecklist">
+      <li><div class="check-box" onclick="toggle(this)"></div> Finish eating at least 3 hours before bedtime</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Avoid caffeine during the second half of the day</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Turn off blue light screens 60-90 minutes before bed</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Create a cool, dark sleep environment</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Block noise (inexpensive earplugs work very well)</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Evict work and stress triggers from your sleeping area</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Move phone away from bedside; turn off router if possible</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Limit naps to 10-15 minutes during the day</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Exercise earlier in the day, not right before bedtime</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Maintain consistent bedtime and wake time</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Build a daily wind-down routine (bath, foot soak, herbal tea)</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Practice relaxation breathing with prayer before sleep</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Place to-do lists and concerns in your Bible before bed</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Consider calming teas: chamomile, lavender, lemon balm, passionflower</li>
+      <li><div class="check-box" onclick="toggle(this)"></div> Dim lights early to allow natural melatonin to develop</li>
+    </ul>
+    <p class="section-intro" style="margin-top:16px;">If you struggle with sleep despite good hygiene, ask your doctor about a sleep study. Undiagnosed sleep apnea is a surprisingly common hidden barrier to weight loss.</p>
+  </div>
+</div>
+
+<!-- 07 ACCOUNTABILITY -->
+<div class="section" id="accountability">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Accountability Partner Guide</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">One of the most powerful things you can do for your wellness journey is invite the right person to walk alongside you. Here's how to do it well.</p>
+
+    <div class="sub-title">Choosing Your Partner</div>
+    <ul class="tip-list">
+      <li>Choose someone who supports your values and aligns with your schedule</li>
+      <li>They should be willing to give BOTH honest AND encouraging feedback</li>
+      <li>Avoid someone who struggles with their own relationship with food — they may unconsciously sabotage you</li>
+      <li>A life coach, mentor, or trusted friend in a faith community are all great options</li>
+      <li>Tina Yeager offers personal coaching at <strong style="color:var(--sage-dark)">tinayeager.com</strong></li>
+    </ul>
+
+    <div class="sub-title">The Check-In Structure</div>
+    <ul class="tip-list">
+      <li>Weekly 10-20 minute check-ins for the first 12 weeks</li>
+      <li>Then 2x per month as habits become more established</li>
+      <li>At each check-in discuss: <strong>Wins</strong> · <strong>Hurdles / setbacks</strong> · <strong>Next steps</strong></li>
+    </ul>
+
+    <div class="sub-title">Your Support Circles</div>
+    <ul class="tip-list">
+      <li><strong>Inner circle</strong> — most trusted; direct authority to speak into your life; must be life-giving and values-aligned</li>
+      <li><strong>Middle circle</strong> — close friends and acquaintances; positive and supportive but less direct influence</li>
+      <li><strong>Outer circle</strong> — broader acquaintances; monitor how much influence you allow from those whose relationship with food or emotional health is still broken</li>
+    </ul>
+
+    <div class="quote-block"><p>"The people around you are great determiners of where you are going. If you find yourself surrounded by people not going where you want to go, add in some different people."</p><span>— Tina Yeager</span></div>
+  </div>
+</div>
+
+<!-- 08 AI COACH -->
+<div class="section" id="coach">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <h2 class="section-title">Getting the Most from Your AI Coach</h2>
+    </div>
+    <div class="section-rule"></div>
+    <p class="section-intro">Your AI wellness coach is trained on Tina's complete course content. Think of it as having access to Tina's knowledge and approach 24/7 — available whenever you need guidance, encouragement, or a gentle nudge back on track.</p>
+
+    <div class="sub-title">Conversation Starter Ideas</div>
+    <p style="font-size:0.85rem;color:var(--mid-gray);margin-bottom:12px;font-weight:300;">Click any prompt to open your coach with that question ready.</p>
+    <div class="prompt-grid">
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"I ate emotionally last night — how do I get back on track today?"</div>
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"What should I eat for breakfast based on the course principles?"</div>
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"My mood has been low all week. What does the course say about this?"</div>
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"Help me set a realistic 7-day goal for this week."</div>
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"What teas should I drink if I'm having trouble sleeping?"</div>
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"I had a setback. Walk me through the recovery planning from the course."</div>
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"Explain the gut-brain axis in simple terms."</div>
+      <div class="prompt-chip" onclick="openCoach(this.innerText)">"I have chronic pain. What movement options do I have?"</div>
+    </div>
+
+    <div class="coach-cta">
+      <h3>Your AI Coach is Ready</h3>
+      <p>Available 24/7, trained on Tina's full course. Bring your questions, your tracking data, your setbacks, and your wins.</p>
+      <a href="https://sustainableweightloss.pro" target="_blank">Open Your Wellness Coach →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© Tina Yeager, LMHC · <a href="https://tinayeager.com">tinayeager.com</a></p>
+  <p style="margin-top:6px;">For educational purposes only. Always consult a qualified professional for medical concerns.<br>Crisis support: <strong style="color:rgba(255,255,255,0.7)">988</strong> (mental health) · <strong style="color:rgba(255,255,255,0.7)">911</strong> (emergencies)</p>
+</footer>
+
+<script>
+function toggle(el) {
+  el.classList.toggle('checked');
+}
+function openCoach(prompt) {
+  const clean = prompt.replace(/[""]/g, '').replace(/^"|"$/g, '');
+  window.open('https://sustainableweightloss.pro', '_blank');
+}
+</script>
+</body>
+</html>
