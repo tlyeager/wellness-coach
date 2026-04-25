@@ -417,13 +417,13 @@ async function sendMessage() {
     const data = await response.json();
     removeTypingIndicator();
 
-    const reply = data.content?.map(b => b.text || '').join('') || "I'm here with you. Could you try rephrasing that?";
+    const reply = data.content?.map(b => b.text || '').join('') || "Debug - no content. Raw response: " + JSON.stringify(data).slice(0, 200);
     conversationHistory.push({ role: 'assistant', content: reply });
     addMessage('assistant', reply);
 
   } catch (err) {
     removeTypingIndicator();
-    addMessage('assistant', "I'm having a little trouble connecting right now. Please try again in a moment — I'm here for you.");
+    addMessage('assistant', "Debug error: " + err.message);
   }
 
   isLoading = false;
